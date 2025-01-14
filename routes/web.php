@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Chat\Index as ChatIndex;
-use App\Livewire\Chat\Chat as Chat;
+use App\Livewire\{
+    Users,
+    Chat\Index as ChatIndex,
+    Chat\Chat 
+};
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,3 +26,5 @@ require __DIR__.'/auth.php';
 
 Route::get('/chat', ChatIndex::class)->name('chat.index');
 Route::get('/chat/{query}', Chat::class)->name('chat.index');
+
+Route::get('/users', Users::class)->name('users');
