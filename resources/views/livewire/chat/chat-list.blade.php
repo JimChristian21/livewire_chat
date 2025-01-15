@@ -1,5 +1,17 @@
 <div 
-    x-data="{type:'all'}"
+    x-data="{
+        type:'all',
+        query:@entangle('query')
+    }"
+    x-init="
+        setTimeout(() => {
+            conversationElement = document.getElementById('conversation-' + query);
+
+            if (conversationElement) {
+                conversationElement.scrollIntoView({'behavior':'smooth'})
+            }
+        }, 200)
+    "
     class="flex flex-col transition-all h-full overflow-hidden"
 >
     <header class="px-3 z-10 bg-white sticky top-0 w-full py-2">
@@ -32,7 +44,11 @@
 
                 @foreach($conversations as $key => $conversation)
 
-                    <li class="py-3 hover:bg-gray-50 rounded-2xl dark:hover:bg-gray-700/70 transition-colors duration-150 flex gap-4 relative w-full cursor-pointer px-2 {{ $conversation->id == $selectedConversation->id ? 'bg-gray-100/70' : '' }}">
+                    <li 
+                        id="conversation-{{ $conversation->id }}"
+                        wire:key="{{ $conversation->id }}"
+                        class="py-3 hover:bg-gray-50 rounded-2xl dark:hover:bg-gray-700/70 transition-colors duration-150 flex gap-4 relative w-full cursor-pointer px-2 {{ $conversation->id == $selectedConversation->id ? 'bg-gray-100/70' : '' }}"
+                    >
                         <a href="#" class="shrink-0">
                             <x-avatar src="https://i.pravatar.cc/500?{{ $key }}"/>
                         </a>

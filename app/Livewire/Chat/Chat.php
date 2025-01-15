@@ -18,6 +18,7 @@ class Chat extends Component
     public function render()
     {
         return view('livewire.chat.chat', [
+            'query' => $this->query,
             'selectedConversation' => $this->selectedConverstation
         ]);
     }
