@@ -1,7 +1,7 @@
 <div 
     x-data="{
-        type:'all',
-        query:@entangle('query')
+        type: 'all',
+        query: @entangle('query')
     }"
     x-init="
         setTimeout(() => {

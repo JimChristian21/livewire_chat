@@ -60,19 +60,25 @@
         </main>
         <footer class="shrink-0 z-10 bg-white inset-x-0">
             <div class="p-2 border-t">
-                <form method="POST" autocapitalize="off">
+                <form
+                    x-data="{body:@entangle('body')}"
+                    wire:submit="sendMessage"
+                    method="POST"
+                    autocapitalize="off"
+                >
                     @csrf
                     <input type="hidder" autocomplete="off" style="display:none;"/>
                     <div class="grid grid-cols-12">
-                        <input 
-                            type="text" 
-                            autocomplete="off" 
+                        <input
+                            x-model="body"
+                            type="text"
+                            autocomplete="off"
                             autofocus
                             placeholder="Write your message here"
                             maxlength="1700"
                             class="col-span-10 bg-gray-100 border-0 outline-0 focus:border-0 focus:ring-0 hover:ring-0 rounded-lg focus:outline-none"
                         >
-                        <button class="col-span-2" type="submit">Send</button>
+                        <button x-bind:disable="!body.trim()" class="col-span-2" type="submit">Send</button>
                     </div>
                 </form>
     
