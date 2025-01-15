@@ -22,7 +22,7 @@ class Users extends Component
 
         if ($existingConversation) 
         {
-            return redirect()->route('chat.index', ['query' => $existingConversation->id]);
+            return redirect()->route('chat', ['query' => $existingConversation->id]);
         }
 
         $createdConversation = Conversation::create([
@@ -30,7 +30,7 @@ class Users extends Component
             'receiver_id' => $userId
         ]);
 
-        return redirect()->route('chat.index', ['query' => $createdConversation->id]);
+        return redirect()->route('chat', ['query' => $createdConversation->id]);
     }
 
     public function render()
